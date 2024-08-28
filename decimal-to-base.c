@@ -1,12 +1,11 @@
 #include<stdio.h>
-#include<string.h>
 
 #define SIZE 50
 
 int main(void)
 {
   int dividend, divisor, remainder, quotient;
-  int str[SIZE];
+  int rem[SIZE];
   printf("This program converts Decimal Values to Any Base\n");
 
   printf("Type in a number (decimal):  ");
@@ -20,13 +19,13 @@ int main(void)
     quotient = dividend / divisor;
     remainder = dividend % divisor;
     dividend = quotient;
-    str[i] = remainder;
+    rem[i] = remainder;
     i++;
   }
   while(quotient != 0);
   for(int j = i - 1; j >= 0; j--)
   {
-    printf("%d", str[j]);
+    printf("%d", rem[j]);
   }
 
   return 0;
