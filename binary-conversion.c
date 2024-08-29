@@ -14,11 +14,10 @@ int main(void)
     scanf("%d", &choice);
     if(choice == 1)
     {
-      decimal_to_binary(); 
     }
     else if(choice == 2)
     {
-      
+      decimal_to_binary(); 
     }
     else if(choice == 3)
     {
@@ -46,12 +45,13 @@ void decimal_to_binary()
   dividend = input;
   do
   {
+    // printf("%d\n", dividend % 2);
     rem[itr] = dividend % 2;
     dividend /= 2;
     itr++;
   }while(dividend != 0);
   printf("Result: %d, ", input);
-  for(int i = itr - 1; itr >= 0; itr--)
+  for(int i = itr - 1; i >= 0; i--)
   {
     printf("%d", rem[i]);
   }
