@@ -1,10 +1,20 @@
 #include<stdio.h>
+#define SIZE 50
+// BDF
+void hex_to_decimal();
 
 int main(void)
 {
-  printf("This program tests ASCII Values:\n");
-  char A = 'A';
-  int A_ascii_value = (int)A;
-  printf("A as ASCII Key: %c\n", putchar(65));
+  char input[SIZE];
+  int ascii;
+  printf("This program tests ASCII Values: ");
+  scanf("%s", input);
+  for(int i = 0; i < 3; i++)
+  {
+    ascii = (int)input[i] - 55;
+    printf("%d | ", ascii);
+  }
+
   return 0;
 }
+
