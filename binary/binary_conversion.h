@@ -1,40 +1,47 @@
 #ifndef BINARY_CONVERSION_H
 #define BINARY_CONVERSION_H
-#define SIZE 50
 #include<stdlib.h>
 
-int* binary_to_decimal(int num);
-int* decimal_to_binary(int num);
+long int binary_to_decimal(long int num);
+int* decimal_to_binary(long int num, size_t bits);
 
-int* decimal_to_binary(int num)
+int power(int base, int exp)
 {
-  size_t bytes = sizeof(int);
-  size_t bits = bytes << 3;
-
-  int* bit_array = (int*)malloc(bits);
-
-  for(size_t i = 0; i < bits; ++i)
-  {
-    int bit = num & (1 << (bits - i - 1));
-    bit = bit ? 1 : 0;
-    bit_array[i] = bit;
-  }
-  return bit_array;
-
+  if(exp == 0)
+    return 1;
+  return base*power(base, exp - 1);
 }
 
-// void binary_to_decimal(long int input)
-// {
-//   long int dividend, result = 0, exp = 0;
-//   dividend = input;
-//   while(dividend != 0)
-//   {
-//     result += (dividend % 10) * pow(2, exp);
-//     dividend /= 10;
-//     exp++;  
-//   }
-//   printf("Binary: %04ld, Conversion: %ld\n", input, result);
-// }
+long int binary_to_decimal(long int num)
+{
+  long int dividend, result = 0, exp = 0;
+  dividend = num;
+  while(dividend != 0)
+  {
+    result += (dividend % 10) * power(2, exp);
+    dividend /= 10;
+    exp++;  
+  }
+  return result;
+}
+
+int* decimal_to_binary(long int num, size_t bits)
+{
+  
+  // size_t bytes = sizeof(int); // 4 bytes (Since 1 byte = 8 bits, 4 bytes = 32 bits)
+  // size_t bits = bytes;        // 32 bits
+
+  int* bit_array = (int*)malloc(bits);
+  do
+  {
+    bit_array[bits - 1] = num % 2;
+    num /= 2;
+    bits--;
+  }while(num != 0);
+  return bit_array;
+}
+
+
 // 
 // void decimal_to_binary(long int input)
 // {

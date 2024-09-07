@@ -2,54 +2,52 @@
 #include<stdlib.h>
 #include "binary_conversion.h"
 
-int main(int argc, char* argv[])
+int main()
 {
-  if(argc != 2)
+  int conversion_choice;
+  do
   {
-    fprintf(stderr, "Expected 1 argument. Got %d.\n", argc-1);
-    return 1;
-  }
-  else
-  {
-    int num = atoi(argv[1]);
-    int* bits = decimal_to_binary(num);
-    for(size_t i = 0; i < sizeof(int) << 3; i++)
+    printf("%s", "1) Binary to Decimal\n2) Decimal to Binary Conversion\n3) Exit\nEnter Your Choice: ");
+    scanf("%d", &conversion_choice);
+    
+    if(conversion_choice == 1)
     {
-      printf("%d", bits[i]);
+      long int number; 
+      printf("%s", "Input Your Number (Decimal): ");
+      scanf("%ld", &number);     
+      long int result = binary_to_decimal(number);
+      printf("%ld\n", result);
     }
 
-    putchar('\n');
-    free(bits);
-    return 0;
-  }
-  // printf("This program converts binary to decimal: \n");
-  // do
-  // {
-  //   printf(" 1) Convert Binary to Decimal\n 2) Convert Decimal to Binary\n 3) Exit\n Select your conversion: ");
-  //   scanf("%d", &choice);
-  //   while(choice != 1 && choice != 2 && choice != 3) 
-  //   {
-  //     printf("INVALID OPTION\n");
-  //     printf(" 1) Convert Binary to Decimal\n 2) Convert Decimal to Binary\n 3) Exit\n Select your conversion: ");
-  //     scanf("%d", &choice);
-  //   }
-  //   printf("Choose your number: ");
-  //   scanf("%ld", &input);
-  //   if(choice == 1)
-  //   {
-  //     binary_to_decimal(input);
-  //   }
-  //   else if(choice == 2)
-  //   {
-  //     decimal_to_binary(input); 
-  //   }
-  //   else if(choice == 3)
-  //   {
-  //     printf("EXITING PROGRAM...");
-  //     break; 
-  //   }
-  //   printf("\n");
-  // }while(choice == 1 || choice == 2);
+    else if(conversion_choice == 2)
+    {
+      long int number; 
+      int number_of_bits;
+      printf("%s", "Input Your Number (Decimal): ");
+      scanf("%ld", &number);
+      printf("%s", "Input Number of Bits: ");
+      scanf("%d", &number_of_bits);
+      int* binary = decimal_to_binary(number, number_of_bits);
+
+      for(size_t i = 0; i < number_of_bits; i++)
+      {
+        printf("%d", binary[i]);
+      }
+
+      printf("%s", "\n\n");
+      free(binary);
+    }
+    else if(conversion_choice == 3)
+      break; 
+
+    else
+    {
+      printf("%s\n", "Try again!");
+      continue;
+    }
+  }while(conversion_choice != 3);
+  
+  return 0;
 }
 
 
