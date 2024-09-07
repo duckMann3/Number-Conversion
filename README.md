@@ -18,7 +18,7 @@
 ### hex
 │   └── hex.c
 ###  octal
-### └── TESTS
+### TESTS
     ├── test
     └── test.c
 README.md

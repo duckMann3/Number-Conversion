@@ -2,10 +2,22 @@
 #define BINARY_CONVERSION_H
 #include<stdlib.h>
 
-long int binary_to_decimal(long int num);
-int* decimal_to_binary(long int num, size_t bits);
+long int binary_to_decimal(long int num);           // Converts binary numbers to decimal
+/* Example: 0011 to deciaml (base 10)
+ *  0     0     1     1
+ * 2^3   2^2   2^1   2^0
+ * ---------------------
+ *  0  +  0  +  2  +  1 = 3 
+*/
+int* decimal_to_binary(long int num, size_t bits);  // Converts decimal numbers to binary
+/* Example: 3 to binary (base 2)
+ * Int \ Rem
+ *  3  \  1   Divide 3 by 2 & check how many times 2 goes into 3 (1 times), then write the remainder below 3
+ *  1  \  1   Divide 1 by 2 & check how many times 1 goes into 1 (0 times), 
+ *  = 0011 (4-bits)
+ * */
 
-int power(int base, int exp)
+int power(int base, int exp)                        // Performs exponential operation from 'math.h'
 {
   if(exp == 0)
     return 1;
@@ -14,23 +26,18 @@ int power(int base, int exp)
 
 long int binary_to_decimal(long int num)
 {
-  long int dividend, result = 0, exp = 0;
-  dividend = num;
-  while(dividend != 0)
+  long int result = 0, exp = 0;                     // store the output in 'result' & ''
+  while(num != 0)                                   // While loop until 'num' is divided to 0
   {
-    result += (dividend % 10) * power(2, exp);
-    dividend /= 10;
-    exp++;  
+    result += (num % 10) * power(2, exp);           // Add binary digit returned from (num % 10) & multiply with exponentional to 'result'  
+    num /= 10;                                      // 
+    exp++;                                          // Increment exponentail
   }
-  return result;
+  return result;                                    // Return 'result'
 }
 
 int* decimal_to_binary(long int num, size_t bits)
 {
-  
-  // size_t bytes = sizeof(int); // 4 bytes (Since 1 byte = 8 bits, 4 bytes = 32 bits)
-  // size_t bits = bytes;        // 32 bits
-
   int* bit_array = (int*)malloc(bits);
   do
   {
@@ -40,26 +47,6 @@ int* decimal_to_binary(long int num, size_t bits)
   }while(num != 0);
   return bit_array;
 }
-
-
-// 
-// void decimal_to_binary(long int input)
-// {
-//   long int dividend, rem[SIZE], itr = 0;
-//   dividend = input;
-//   do
-//   {
-//     rem[itr] = dividend % 2;
-//     dividend /= 2;
-//     itr++;
-//   }while(dividend != 0);
-//   printf("Decimal: %ld, Conversion: ", input);
-//   for(int i = itr - 1; i >= 0; i--)
-//   {
-//     printf("%ld", rem[i]);
-//   }
-//   printf("\n");
-// }
 
 #endif
 
