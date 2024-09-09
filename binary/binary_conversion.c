@@ -13,7 +13,7 @@ int main()
     if(conversion_choice == 1)
     {
       long int number; 
-      printf("%s", "Input Your Number (Decimal): ");
+      printf("%s", "Input Your Number (Binary): ");
       scanf("%ld", &number);     
       long int result = binary_to_decimal(number);
       printf("%ld\n", result);
