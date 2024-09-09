@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include<string.h>
 #include "../binary/binary_conversion.h"
 #define SIZE 50
 
@@ -7,7 +8,7 @@ int* hex_to_binary(int num);
 
 int main(void)
 {
-  char* input[SIZE];
+  char input[SIZE];
   int choice, hex_to_ascii;
   do
   {
@@ -15,7 +16,8 @@ int main(void)
     printf("1) Hexadecimal to Binary\n2) Binary to Hexadecimal\n3) Exit\nChoose your conversion: ");
     scanf("%s", input);
     int size = sizeof(input)/sizeof(input)[0];
-    printf("%d\n", size);
+    size_t size2 = strlen(input);
+    printf("%d %ld\n", size, size2);
 
     // if(choice == 1)
     // {
