@@ -1,35 +1,27 @@
 #include<stdio.h>
 #include<string.h>
 #include "../binary/binary_conversion.h"
-#define SIZE 50
+#define SIZE 10
 
 void hex_to_decimal();
 int* hex_to_binary(int num);
 
 int main(void)
 {
-  char input[SIZE];
-  int choice, hex_to_ascii;
+  int choice;
   do
   {
     printf("This program Converts Hexadecimal from and to Hexadecimal usign ASCII\n");
     printf("1) Hexadecimal to Binary\n2) Binary to Hexadecimal\n3) Exit\nChoose your conversion: ");
-    scanf("%s", input);
-    int size = sizeof(input)/sizeof(input)[0];
-    size_t size2 = strlen(input);
-    printf("%d %ld\n", size, size2);
+    scanf("%d", &choice);
 
-    // if(choice == 1)
-    // {
-    //   int hex_input;  
-    //   scanf("%x", &hex_input);
-    //   printf("%x\n", hex_input);
-    //   int* bit = hex_to_binary(hex_input); 
-    // }
+    if(choice == 1)
+    {
+      int* bit = hex_to_binary(0); 
+    }
     
     // for(int i = 0; i < 3; i++)
     // {
-    //   hex_to_ascii = (int)input[i] - 55;
     //   int* bit = decimal_to_binary(hex_to_ascii, 4);
     //   // printf("%d | ", ascii);
     //   for(size_t i = 0; i < 4; i++)
@@ -43,10 +35,26 @@ int main(void)
 
 int* hex_to_binary(int num)
 {
-  for(size_t i = 0; i < 3; i++)
+  char hex_input[SIZE];
+  char* endptr;
+  long int hex_to_ascii, num;
+  printf("Input your Hexadecimal Value: ");
+  scanf("%s", hex_input);
+  for(size_t i = 0; i < strlen(hex_input); i++)
   {
-    num /= 10;
-    printf("%x\n", num);
+    num = strol(hex_input, )
+    if(*endptr != '\0')
+    {
+      printf("Char was found: %c", *endptr);
+    }
+    else
+    {
+      printf("Int was found: %ld", num;)
+    }
+    // printf("%c, ", hex_input[i]);
+    // int char_to_int = hex_input[i] - '0';
+    // hex_to_ascii = (int)hex_input[i] - 55;
+    // printf("%d %d\n", hex_to_ascii, char_to_int);
   }
   return NULL;
 }
